@@ -1,0 +1,127 @@
+/* ===== Colors, shared with Surfingkeys ===== */
+:root {
+  --sk-bg: #2a2725;
+  --sk-bg-alt: #353130;
+  --sk-border: #4b4541;
+  --sk-fg: #e6dfd8;
+  --sk-muted: #a69a8e;
+  --sk-selected: #45403b;
+}
+
+/* ===== Force Firefox's own color variables to our palette ===== */
+:root,
+#navigator-toolbox,
+#nav-bar,
+#urlbar {
+  color-scheme: dark !important;
+  --toolbar-bgcolor: var(--sk-bg) !important;
+  --toolbar-color: var(--sk-fg) !important;
+  --toolbar-field-background-color: var(--sk-bg) !important;
+  --toolbar-field-color: var(--sk-fg) !important;
+  --toolbar-field-focus-background-color: var(--sk-bg) !important;
+  --toolbar-field-focus-color: var(--sk-fg) !important;
+  --toolbar-field-focus-border-color: transparent !important;
+  --focus-outline-color: var(--sk-border) !important;
+  --urlbar-box-bgcolor: var(--sk-bg) !important;
+  --urlbar-box-text-color: var(--sk-fg) !important;
+  --urlbarView-highlight-background: var(--sk-selected) !important;
+  --urlbarView-highlight-color: var(--sk-fg) !important;
+  --urlbarView-hover-background: var(--sk-selected) !important;
+  --urlbarView-secondary-text-color: var(--sk-muted) !important;
+  --urlbarView-action-color: var(--sk-muted) !important;
+  --arrowpanel-background: var(--sk-bg) !important;
+  --arrowpanel-color: var(--sk-fg) !important;
+}
+
+/* ===== Hide tabs, sidebar, bookmarks bar ===== */
+#TabsToolbar,
+#sidebar-box,
+#sidebar-main,
+#PersonalToolbar {
+  visibility: collapse !important;
+}
+
+/* ===== Floating bar, invisible until focused ===== */
+#navigator-toolbox {
+  position: fixed !important;
+  top: 32px;
+  left: 10vw;
+  width: 80vw;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  background: transparent !important;
+  border: none !important;
+}
+#navigator-toolbox:focus-within {
+  opacity: 1;
+  pointer-events: auto;
+}
+#nav-bar {
+  background: var(--sk-bg) !important;
+  border: 1px solid var(--sk-border) !important;
+  border-radius: 12px !important;
+  padding: 8px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ===== Only the URL bar, nothing around it ===== */
+#nav-bar-customization-target > :not(#urlbar-container),
+#PanelUI-button,
+#unified-extensions-button,
+#page-action-buttons,
+#identity-box,
+#tracking-protection-icon-container,
+.search-one-offs {
+  display: none !important;
+}
+#urlbar-container {
+  flex: 1 !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+/* ===== Text ===== */
+#urlbar,
+#urlbar-input,
+.urlbarView {
+  color: var(--sk-fg) !important;
+  font-family: "JetBrains Mono", monospace !important;
+  font-size: 10pt !important;
+}
+
+/* ===== Result rows ===== */
+.urlbarView-url,
+.urlbarView-action {
+  color: var(--sk-muted) !important;
+}
+.urlbarView-row[selected] > .urlbarView-row-inner,
+.urlbarView-row:hover > .urlbarView-row-inner {
+  background: var(--sk-selected) !important;
+  color: var(--sk-fg) !important;
+  border-radius: 6px !important;
+}
+
+
+
+/* Quick action pills */
+.urlbarView-quickaction-button,
+.urlbarView-action-btn {
+  background: var(--sk-bg-alt) !important;
+  color: var(--sk-fg) !important;
+  border: 1px solid var(--sk-border) !important;
+  font-family: "JetBrains Mono", monospace !important;
+}
+.urlbarView-quickaction-button[selected],
+.urlbarView-quickaction-button:hover,
+.urlbarView-action-btn[selected],
+.urlbarView-action-btn:hover {
+  background: var(--sk-selected) !important;
+  color: var(--sk-fg) !important;
+}
+.urlbarView-quickaction-button img,
+.urlbarView-action-btn img {
+  fill: var(--sk-fg) !important;
+  -moz-context-properties: fill;
+}
