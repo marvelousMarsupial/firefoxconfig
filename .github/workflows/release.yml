@@ -1,0 +1,21 @@
+# Build the .deb and attach it to a GitHub release when a v* tag is pushed.
+name: release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  deb:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: make deb VERSION="${GITHUB_REF_NAME#v}" MAINTAINER="$GITHUB_REPOSITORY_OWNER <$GITHUB_REPOSITORY_OWNER@users.noreply.github.com>"
+      - name: Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd build
+          sha256sum firefoxconfig_*_all.deb > SHA256SUMS
+          gh release create "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --title "$GITHUB_REF_NAME" --generate-notes firefoxconfig_*_all.deb SHA256SUMS
