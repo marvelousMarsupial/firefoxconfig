@@ -9,13 +9,46 @@
         "installation_mode": "normal_installed",
         "install_url": "https://addons.mozilla.org/firefox/downloads/latest/surfingkeys_ff/latest.xpi"
       },
-      "@testpilot-containers": {
-        "installation_mode": "normal_installed",
-        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/multi-account-containers/latest.xpi"
-      },
       "addon@darkreader.org": {
         "installation_mode": "normal_installed",
         "install_url": "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi"
+      },
+      "keepassxc-browser@keepassxc.org": {
+        "installation_mode": "normal_installed",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/keepassxc-browser/latest.xpi"
+      },
+      "sponsorBlocker@ajay.app": {
+        "installation_mode": "normal_installed",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi"
+      },
+      "myallychou@gmail.com": {
+        "installation_mode": "normal_installed",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/youtube-recommended-videos/latest.xpi"
+      },
+      "{ddc62400-f22d-4dd3-8b4a-05837de53c2e}": {
+        "installation_mode": "normal_installed",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/read-aloud/latest.xpi"
+      }
+    },
+    "OverrideFirstRunPage": "",
+    "OverridePostUpdatePage": "",
+    "DontCheckDefaultBrowser": true,
+    "NoDefaultBookmarks": true,
+    "DisableTelemetry": true,
+    "DisableFirefoxStudies": true,
+    "SkipTermsOfUse": true,
+    "UserMessaging": {
+      "SkipOnboarding": true,
+      "ExtensionRecommendations": false,
+      "FeatureRecommendations": false,
+      "UrlbarInterventions": false,
+      "MoreFromMozilla": false,
+      "FirefoxLabs": false
+    },
+    "Preferences": {
+      "datareporting.policy.firstRunURL": {
+        "Value": "",
+        "Status": "default"
       }
     }
   }
