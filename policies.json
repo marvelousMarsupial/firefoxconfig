@@ -30,9 +30,9 @@
         "install_url": "https://addons.mozilla.org/firefox/downloads/latest/read-aloud/latest.xpi"
       },
       "harper@writewithharper.com": {
-  "installation_mode": "normal_installed",
-  "install_url": "https://addons.mozilla.org/firefox/downloads/latest/private-grammar-checker-harper/latest.xpi"
-}
+        "installation_mode": "normal_installed",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/private-grammar-checker-harper/latest.xpi"
+      }
     },
     "OverrideFirstRunPage": "",
     "OverridePostUpdatePage": "",
@@ -56,34 +56,51 @@
       }
     },
     "3rdparty": {
-  "Extensions": {
-    "uBlock0@raymondhill.net": {
-      "toOverwrite": {
-        "filterLists": [
-          "user-filters",
-          "ublock-filters",
-          "ublock-badware",
-          "ublock-privacy",
-          "ublock-unbreak",
-          "ublock-quick-fixes",
-          "easylist",
-          "easyprivacy",
-          "urlhaus-1",
-          "plowe-0",
-          "adguard-spyware-url",
-          "fanboy-cookiemonster",
-          "ublock-cookies-easylist",
-          "fanboy-social",
-          "easylist-annoyances",
-          "easylist-chat",
-          "easylist-newsletters",
-          "easylist-notifications",
-          "fanboy-ai-suggestions",
-          "ublock-annoyances"
-        ]
+      "Extensions": {
+        "uBlock0@raymondhill.net": {
+          "toOverwrite": {
+            "filterLists": [
+              "user-filters",
+              "ublock-filters",
+              "ublock-badware",
+              "ublock-privacy",
+              "ublock-unbreak",
+              "ublock-quick-fixes",
+              "easylist",
+              "easyprivacy",
+              "urlhaus-1",
+              "plowe-0",
+              "adguard-spyware-url",
+              "fanboy-cookiemonster",
+              "ublock-cookies-easylist",
+              "fanboy-social",
+              "easylist-annoyances",
+              "easylist-chat",
+              "easylist-newsletters",
+              "easylist-notifications",
+              "fanboy-ai-suggestions",
+              "ublock-annoyances"
+            ]
+          }
+        }
       }
+    },
+    "SearchEngines": {
+      "Default": "DuckDuckGo HTML",
+      "Add": [
+        {
+          "Name": "DuckDuckGo HTML",
+          "URLTemplate": "https://html.duckduckgo.com/html/?q={searchTerms}",
+          "Method": "GET",
+          "IconURL": "https://duckduckgo.com/favicon.ico",
+          "Alias": "ddg",
+          "Description": "DuckDuckGo, HTML version"
+        }
+      ],
+      "Remove": [
+        "Google",
+        "Bing"
+      ]
     }
-  }
-}
   }
 }

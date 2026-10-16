@@ -19,7 +19,7 @@
     { name: "Social",   icon: "chill",     color: "purple" },
   ];
   // Delete any container not in the list above
-  const REMOVE_OTHERS = true;
+  const REMOVE_OTHERS = false;
 
   const label = (c) => ContextualIdentityService.getUserContextLabel(c.userContextId);
 

@@ -39,17 +39,12 @@ user_pref("browser.sessionstore.max_windows_undo", 10);
 // ===== Dark mode everywhere =====
 // Tell Firefox the system is dark, so the default theme goes dark
 user_pref("ui.systemUsesDarkTheme", 1);
-// Firefox's own UI and built-in pages: 0 = dark
-user_pref("browser.theme.toolbar-theme", 0);
-user_pref("browser.theme.content-theme", 0);
 // Websites that support dark mode get dark mode
 user_pref("layout.css.prefers-color-scheme.content-override", 0);
 
 // ===== Betterfox tradeoffs: uncomment to undo =====
 // Keep cache on disk, faster after restarts, less private
 // user_pref("browser.cache.disk.enable", true);
-// Save session every 15s instead of 60s, lose less on a crash
-// user_pref("browser.sessionstore.interval", 15000);
 // Standard tracking protection instead of strict, fewer broken sites
 // user_pref("browser.contentblocking.category", "standard");
 
