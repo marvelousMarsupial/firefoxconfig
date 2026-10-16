@@ -4,7 +4,7 @@
 // ==/UserScript==
 
 (function () {
-  const NEWTAB = "https://www.duckduckgo.com/?kae=d";
+  const NEWTAB = "https://html.duckduckgo.com/html/";
 
   // Point new tabs at our URL
   try {

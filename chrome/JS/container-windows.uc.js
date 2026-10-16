@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Container windows
-// @description    Creates my containers; Ctrl+N picker; tabs stay in their window's container
+// @description    Creates my containers; Ctrl+N picker reuses or restores container windows; tabs stay in their window's container
 // ==/UserScript==
 
 (function () {
@@ -49,20 +49,56 @@
       .filter(Boolean);
   }
 
-  // ---- Which container this window belongs to ----
-  function windowContainer() {
-    return Number(gBrowser.tabs[0]?.getAttribute("usercontextid") || 0);
+  // ---- Which container a window belongs to ----
+  function containerOf(win) {
+    return Number(win.gBrowser.tabs[0]?.getAttribute("usercontextid") || 0);
   }
 
   // ---- New tabs inherit the window's container ----
   const origAddTab = gBrowser.addTab;
   gBrowser.addTab = function (uri, params = {}) {
-    const id = windowContainer();
+    const id = containerOf(window);
     if (id && !params.userContextId) {
       params = { ...params, userContextId: id };
     }
     return origAddTab.call(this, uri, params);
   };
+
+  // ---- Reuse, restore, or create a container window ----
+  function findOpenWindow(id) {
+    for (const win of Services.wm.getEnumerator("navigator:browser")) {
+      if (win.closed || PrivateBrowsingUtils.isWindowPrivate(win)) continue;
+      if (containerOf(win) === id) return win;
+    }
+    return null;
+  }
+
+  function findClosedWindow(id) {
+    let closed = SessionStore.getClosedWindowData();
+    if (typeof closed === "string") closed = JSON.parse(closed);
+    return closed.findIndex(
+      (w) => Number(w.tabs?.[0]?.userContextId || 0) === id
+    );
+  }
+
+  function openContainer(id) {
+    // Main always gets a fresh window
+    if (id === 0) {
+      openTrustedLinkIn(NEWTAB, "window");
+      return;
+    }
+    const open = findOpenWindow(id);
+    if (open) {
+      open.focus();
+      return;
+    }
+    const idx = findClosedWindow(id);
+    if (idx !== -1) {
+      SessionStore.undoCloseWindow(idx);
+      return;
+    }
+    openTrustedLinkIn(NEWTAB, "window", { userContextId: id });
+  }
 
   // ---- The picker ----
   function showPicker() {
@@ -107,7 +143,7 @@
     const close = () => box.remove();
     const pick = (id) => {
       close();
-      openTrustedLinkIn(NEWTAB, "window", { userContextId: id });
+      openContainer(id);
     };
 
     box.addEventListener("keydown", (e) => {

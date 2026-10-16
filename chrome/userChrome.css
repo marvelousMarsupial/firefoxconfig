@@ -125,3 +125,10 @@
   fill: var(--sk-fg) !important;
   -moz-context-properties: fill;
 }
+
+/* ESR: the URL bar draws on its own layer, so hide it directly when idle */
+#urlbar:not([focused]):not([open]),
+.urlbar:not([focused]):not([open]) {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

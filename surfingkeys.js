@@ -27,7 +27,13 @@ api.unmapAllExcept([
   // Visual mode and find
   'v', 'V', 'zv', '/', 'n', 'N', '*',
   // Misc
-  ';pm', ';db', ';dh', ';ph', ';yh'
+  ';pm', ';db', ';dh', ';ph', ';yh',
+
+      // Insert mode (typing in text boxes)
+  '<Ctrl-a>', '<Ctrl-e>', '<Ctrl-u>',
+  '<Alt-b>', '<Alt-f>', '<Alt-w>', '<Alt-d>',
+  '<Ctrl-i>'
+
 ]);
 api.imap('jj', '<Esc>');
 api.cmap('jj', '<Esc>');
