@@ -33,6 +33,8 @@ user_pref("browser.startup.homepage", "https://html.duckduckgo.com/html/");
 user_pref("browser.ipProtection.enabled", false);
 user_pref("browser.startup.page", 3);
 user_pref("browser.sessionstore.interval", 15000);
+// Remember up to 10 closed windows, so container windows can be reopened
+user_pref("browser.sessionstore.max_windows_undo", 10);
 
 // ===== Betterfox tradeoffs: uncomment to undo =====
 // Keep cache on disk, faster after restarts, less private

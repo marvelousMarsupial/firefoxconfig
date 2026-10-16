@@ -28,7 +28,11 @@
       "{ddc62400-f22d-4dd3-8b4a-05837de53c2e}": {
         "installation_mode": "normal_installed",
         "install_url": "https://addons.mozilla.org/firefox/downloads/latest/read-aloud/latest.xpi"
-      }
+      },
+      "harper@writewithharper.com": {
+  "installation_mode": "normal_installed",
+  "install_url": "https://addons.mozilla.org/firefox/downloads/latest/private-grammar-checker-harper/latest.xpi"
+}
     },
     "OverrideFirstRunPage": "",
     "OverridePostUpdatePage": "",
@@ -50,6 +54,36 @@
         "Value": "",
         "Status": "default"
       }
+    },
+    "3rdparty": {
+  "Extensions": {
+    "uBlock0@raymondhill.net": {
+      "toOverwrite": {
+        "filterLists": [
+          "user-filters",
+          "ublock-filters",
+          "ublock-badware",
+          "ublock-privacy",
+          "ublock-unbreak",
+          "ublock-quick-fixes",
+          "easylist",
+          "easyprivacy",
+          "urlhaus-1",
+          "plowe-0",
+          "adguard-spyware-url",
+          "fanboy-cookiemonster",
+          "ublock-cookies-easylist",
+          "fanboy-social",
+          "easylist-annoyances",
+          "easylist-chat",
+          "easylist-newsletters",
+          "easylist-notifications",
+          "fanboy-ai-suggestions",
+          "ublock-annoyances"
+        ]
+      }
     }
+  }
+}
   }
 }
