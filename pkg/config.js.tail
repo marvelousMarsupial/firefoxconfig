@@ -1,0 +1,26 @@
+
+// ===== fx-autoconfig loader, from the install dir instead of the profile =====
+try {
+  const dirsvc = Cc["@mozilla.org/file/directory_service;1"].getService(Ci.nsIProperties);
+  // GreD is the Firefox install dir, /usr/lib/firefox-esr on Debian
+  const base = dirsvc.get("GreD", Ci.nsIFile);
+  base.append("firefoxconfig");
+  base.append("chrome");
+
+  const manifest = base.clone();
+  manifest.append("utils");
+  manifest.append("chrome.manifest");
+  if (manifest.exists()) {
+    Components.manager.QueryInterface(Ci.nsIComponentRegistrar).autoRegister(manifest);
+    ChromeUtils.importESModule("chrome://userchromejs/content/boot.sys.mjs");
+  }
+
+  // userChrome.css as a user sheet, same level Firefox gives the profile copy
+  const css = base.clone();
+  css.append("userChrome.css");
+  if (css.exists()) {
+    const sss = Cc["@mozilla.org/content/style-sheet-service;1"].getService(Ci.nsIStyleSheetService);
+    const io = Cc["@mozilla.org/network/io-service;1"].getService(Ci.nsIIOService);
+    sss.loadAndRegisterSheet(io.newFileURI(css), sss.USER_SHEET);
+  }
+} catch (e) {}

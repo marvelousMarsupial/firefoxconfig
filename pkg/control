@@ -1,0 +1,10 @@
+Package: firefoxconfig
+Version: @VERSION@
+Section: web
+Priority: optional
+Architecture: all
+Depends: firefox-esr
+Maintainer: @MAINTAINER@
+Description: Personal Firefox ESR configuration
+ Policies, prefs, userChrome.css and autoconfig scripts installed
+ into /usr/lib/firefox-esr so every profile gets them.
