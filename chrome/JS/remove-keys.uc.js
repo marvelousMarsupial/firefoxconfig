@@ -13,7 +13,6 @@
     { key: "D", mods: "accel" },        // bookmark this page
     { key: "S", mods: "accel" },        // save page as
     { key: "P", mods: "accel" },        // print
-    { key: "O", mods: "accel" },        // open file, so Read Aloud can own Ctrl+O
     { keycode: "VK_F1", mods: "" },     // help
   ];
 

@@ -40,7 +40,7 @@ Manual tasks after the first start:
 
 1. Paste surfingkeys.js into Surfingkeys' settings
 2. Harper: set the hotkey, turn on Enable on New Sites by Default and Ignore Non-English Text
-3. Read Aloud: pick the Piper voice and let it download, then give it Ctrl+O under
-   Manage Extension Shortcuts in about:addons (Firefox's own Ctrl+O is removed)
+3. Read Aloud: pick the Piper voice and let it download. Alt+O plays and stops,
+   Alt+P pauses; Ctrl+O stays Firefox's open-file key
 4. KeePassXC: turn on browser integration in the app and connect the extension
 5. Unhook and SponsorBlock: set your toggles
