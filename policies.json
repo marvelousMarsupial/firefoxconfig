@@ -86,8 +86,16 @@
       }
     },
     "SearchEngines": {
-      "Default": "DuckDuckGo HTML",
+      "Default": "Brave",
       "Add": [
+        {
+          "Name": "Brave",
+          "URLTemplate": "https://search.brave.com/search?q={searchTerms}",
+          "Method": "GET",
+          "IconURL": "https://search.brave.com/favicon.ico",
+          "Alias": "b",
+          "Description": "Brave Search"
+        },
         {
           "Name": "DuckDuckGo HTML",
           "URLTemplate": "https://html.duckduckgo.com/html/?q={searchTerms}",
