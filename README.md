@@ -33,7 +33,7 @@ Moving from the old profile based setup: remove user.js and chrome/ from the
 profile, they would be loaded twice otherwise.
 
 ```
-rm -rf ~/.config/mozilla/firefox/*/user.js ~/.config/mozilla/firefox/*/chrome
+rm -rf ~/.mozilla/firefox/*/user.js ~/.mozilla/firefox/*/chrome ~/.config/mozilla/firefox/*/user.js ~/.config/mozilla/firefox/*/chrome
 ```
 
 Manual tasks after the first start:
