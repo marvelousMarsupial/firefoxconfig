@@ -55,7 +55,11 @@
     background: transparent !important;
     border: none !important;
   }
-  #navigator-toolbox:focus-within {
+  #navigator-toolbox:focus-within,
+  /* Notification bars (add-on installed, tab crashed, restart to update) live in
+     the toolbox; show it while one is open so they can be read and clicked */
+  #navigator-toolbox:has(#notifications-toolbar notification-message),
+  #navigator-toolbox:has(#tab-notification-deck notification-message) {
     opacity: 1;
     pointer-events: auto;
   }

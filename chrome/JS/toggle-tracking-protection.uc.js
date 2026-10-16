@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name           Toggle tracking protection
 // @description    Ctrl+Shift+X turns tracking protection off or on for the current site and reloads
+// @ignorecache
 // ==/UserScript==
 
 (function () {
@@ -19,7 +20,7 @@
   if (!document.getElementById("key_toggle_tracking_protection")) {
     UC_API.Hotkeys.define({
       id: "key_toggle_tracking_protection",
-      modifiers: "accel,shift",
+      modifiers: "accel shift",  // space-separated: the loader splits on spaces, not commas
       key: "X",
       command: (win) => win.toggleTrackingProtection?.(),
     }).autoAttach({ suppressOriginal: true });

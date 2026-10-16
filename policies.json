@@ -1,6 +1,12 @@
 {
   "policies": {
     "ExtensionSettings": {
+      "*": {
+        "installation_mode": "allowed",
+        "install_sources": [
+          "https://addons.mozilla.org/"
+        ]
+      },
       "uBlock0@raymondhill.net": {
         "installation_mode": "normal_installed",
         "install_url": "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
@@ -106,7 +112,6 @@
         }
       ],
       "Remove": [
-        "Google",
         "Bing"
       ]
     }

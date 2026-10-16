@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name           Container windows
 // @description    Creates my containers; Ctrl+N picker reuses or restores container windows; tabs stay in their window's container
+// @ignorecache
 // ==/UserScript==
 
 (function () {

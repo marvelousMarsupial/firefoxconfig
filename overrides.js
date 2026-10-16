@@ -4,6 +4,12 @@
 
 // ===== UI setup =====
 user_pref("extensions.activeThemeID", "firefox-compact-dark@mozilla.org");
+// The downloads button is hidden, so do not pop its panel; Ctrl+Shift+Y opens the Library
+user_pref("browser.download.alwaysOpenPanel", false);
+// Ctrl+Q never quits (remove-keys.uc.js also disables the key)
+user_pref("browser.quitShortcut.disabled", true);
+// userChrome.css comes from the install dir; a leftover profile copy must not load too
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", false);
 user_pref("sidebar.revamp", true);
 user_pref("browser.ctrlTab.sortByRecentlyUsed", true);
 // Flip to true only when using the Browser Toolbox

@@ -14,14 +14,14 @@ api.unmapAllExcept([
   'gt', 'gT', 'gp', 'B', 'F',
   // Page navigation
   'S', 'D', 'r', 'gu', 'gU', 'gs',
-  // Search selected text
-  'sd', 'se', 'ss', 'sh', 'sy',
+  // Search selected text: Brave first, Google and DuckDuckGo as secondaries
+  'sb', 'sg', 'sd', 'se', 'ss', 'sh', 'sy',
   // Clipboard
   'yy', 'yh', 'yl', 'yY', 'ys', 'yv', 'ymv', 'yq', 'yi', 'yc', 'ymc',
   'ya', 'yma', 'yg', 'yG', 'yS', 'yf', 'yp', ';pf', 'cc', ';cq',
   'yj', ';pp', 'yd', 'yQ',
   // Omnibar
-  't', 'go', 'b', 'ab', 'oh', 'ox', 'H', 'oi', 'od', 'oe', 'os', 'oy',
+  't', 'go', 'b', 'ab', 'oh', 'ox', 'H', 'oi', 'ob', 'og', 'od', 'oe', 'os', 'oy',
   // Marks
   'm', "'", '<Ctrl-\'>', 'om',
   // Visual mode and find
@@ -41,6 +41,14 @@ api.aceVimMap('jj', '<Esc>');
 
 // T always uses the centered omnibar tab list
 settings.tabsThreshold = 0;
+
+// Brave for the omnibar (t, then type a query) and for `sb` on selected text.
+// Surfingkeys has its own default engine (Google), separate from Firefox's.
+api.removeSearchAlias('b');  // the built-in `b` is Baidu
+api.addSearchAlias('b', 'brave', 'https://search.brave.com/search?q=', 's',
+  'https://search.brave.com/api/suggest?q=',
+  (response) => JSON.parse(response.text)[1]);
+settings.defaultSearchEngine = 'b';
 
 settings.theme = `
 .sk_theme {

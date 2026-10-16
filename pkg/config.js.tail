@@ -23,4 +23,9 @@ try {
     const io = Cc["@mozilla.org/network/io-service;1"].getService(Ci.nsIIOService);
     sss.loadAndRegisterSheet(io.newFileURI(css), sss.USER_SHEET);
   }
-} catch (e) {}
+} catch (e) {
+  try {
+    Cc["@mozilla.org/consoleservice;1"].getService(Ci.nsIConsoleService)
+      .logStringMessage("firefoxconfig: loader failed: " + e);
+  } catch (_) {}
+}

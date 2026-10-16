@@ -4,8 +4,11 @@
 #   make reload     clear the profile startup cache so changed scripts load
 #   make update-fxac  refresh vendor/fx-autoconfig from upstream
 
-VERSION    ?= 0.1.0
-MAINTAINER ?= $(shell git config user.name) <$(shell git config user.email)>
+# Version from the newest tag; override with VERSION=x.y.z for a release build.
+VERSION    ?= $(shell { git describe --tags --abbrev=0 2>/dev/null || git tag --sort=-v:refname 2>/dev/null | head -1; } | sed 's/^v//' | grep . || echo 0.0.0)
+MAINTAINER ?= $(or $(shell git config user.name),firefoxconfig) <$(or $(shell git config user.email),nobody@localhost)>
+# Reproducible builds: file times come from the last commit, so two builds of one tree match.
+export SOURCE_DATE_EPOCH ?= $(shell git log -1 --format=%ct 2>/dev/null || echo 0)
 FXDIR       = /usr/lib/firefox-esr
 BUILD       = build
 ROOT        = $(BUILD)/root
@@ -38,10 +41,14 @@ $(DEB): check betterfox.js overrides.js policies.json chrome/userChrome.css $(SC
 	cp $(FXAC)/LICENSE $(ROOT)/usr/share/doc/firefoxconfig/LICENSE.fx-autoconfig
 	sed -e 's/@VERSION@/$(VERSION)/' -e 's/@MAINTAINER@/$(MAINTAINER)/' pkg/control > $(ROOT)/DEBIAN/control
 	find $(ROOT) -type d -exec chmod 755 {} + -o -type f -exec chmod 644 {} +
+	find $(ROOT) -exec touch -h -d @$(SOURCE_DATE_EPOCH) {} +
 	dpkg-deb --root-owner-group --build $(ROOT) $(DEB)
 
+# check: every user_pref line must become a pref() call; a leftover throws in config.js and stops the loader.
 check:
 	jq empty policies.json
+	@cat betterfox.js overrides.js | sed -E 's/^user_pref\((.*)\);(\s*\/\/.*)?\s*$$/try { pref(\1); } catch (e) {}\2/' \
+	  | grep -vE '^\s*//' | grep -n 'user_pref' && { echo "a user_pref line is not on one line starting at column 0"; exit 1; } || true
 	@test "$$(grep -c '^user_pref(' betterfox.js overrides.js | awk -F: '{s+=$$2} END{print s}')" = \
 	      "$$(grep -cE '^user_pref\(.*\);\s*(//.*)?$$' betterfox.js overrides.js | awk -F: '{s+=$$2} END{print s}')" \
 	  || { echo "a user_pref line does not end in );"; exit 1; }

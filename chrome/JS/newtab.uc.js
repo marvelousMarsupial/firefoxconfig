@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name           New tab page
 // @description    New tabs open DuckDuckGo with focus on the page
+// @ignorecache
 // ==/UserScript==
 
 (function () {

@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name           Remove unused keys
 // @description    Removes Firefox shortcuts that are useless with the hidden UI or easy to hit by accident
+// @ignorecache
 // ==/UserScript==
 
 (function () {
@@ -35,6 +36,12 @@
         norm(r.mods) === mods &&
         (r.key ? r.key === key : r.keycode === keycode)
     );
-    if (match) el.remove();
+    // Disable instead of removing: menu items still reference the <key> for their
+    // shortcut label and log an error for every missing one.
+    if (match) {
+      el.setAttribute("disabled", "true");
+      el.removeAttribute("command");
+      el.removeAttribute("oncommand");
+    }
   }
 })();
